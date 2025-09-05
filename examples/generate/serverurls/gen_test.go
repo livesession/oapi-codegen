@@ -20,7 +20,7 @@ func TestServerUrlTheProductionAPIServer(t *testing.T) {
 		require.NoError(t, err)
 	})
 
-	// TODO:when we validate enums, this will need more testing https://github.com/oapi-codegen/oapi-codegen/issues/2006
+	// TODO:when we validate enums, this will need more testing https://github.com/livesession/oapi-codegen/issues/2006
 	t.Run("when values that are not part of the enum are provided, it does not error", func(t *testing.T) {
 		invalidPort := ServerUrlTheProductionAPIServerPortVariable("12345")
 		serverUrl, err := NewServerUrlTheProductionAPIServer(

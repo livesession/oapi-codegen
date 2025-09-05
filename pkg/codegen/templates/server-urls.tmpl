@@ -14,19 +14,19 @@ const {{ .GoName}} = "{{ .OAPISchema.URL }}"
    // {{ $prefix }} is the `{{ $k }}` variable for {{ $goName }}
    type {{ $prefix }} string
    {{ range $v.Enum }}
-       {{/* TODO this may result in broken generated code if any of the `enum` values are the literal value `default` https://github.com/oapi-codegen/oapi-codegen/issues/2003 */}}
+       {{/* TODO this may result in broken generated code if any of the `enum` values are the literal value `default` https://github.com/livesession/oapi-codegen/issues/2003 */}}
        // {{ $prefix }}{{ . | ucFirst }} is one of the accepted values for the `{{ $k }}` variable for {{ $goName }}
        const {{ $prefix }}{{ . | ucFirst }} {{ $prefix }} = "{{ . }}"
    {{ end }}
 
-   {{/* TODO we should introduce a `Valid() error` method to enums https://github.com/oapi-codegen/oapi-codegen/issues/2006 */}}
+   {{/* TODO we should introduce a `Valid() error` method to enums https://github.com/livesession/oapi-codegen/issues/2006 */}}
 
    {{ if $v.Default }}
        {{ if gt (len $v.Enum) 0 }}
            {{/* if we have an enum, we should use the type defined for it for its default value
                and reference the constant we've already defined for the value */}}
-           {{/* TODO this may result in broken generated code if any of the `enum` values are the literal value `default` https://github.com/oapi-codegen/oapi-codegen/issues/2003 */}}
-           {{/* TODO this may result in broken generated code if the `default` isn't found in `enum` (which is an issue with the spec) https://github.com/oapi-codegen/oapi-codegen/issues/2007 */}}
+           {{/* TODO this may result in broken generated code if any of the `enum` values are the literal value `default` https://github.com/livesession/oapi-codegen/issues/2003 */}}
+           {{/* TODO this may result in broken generated code if the `default` isn't found in `enum` (which is an issue with the spec) https://github.com/livesession/oapi-codegen/issues/2007 */}}
            // {{ $prefix }}Default is the default choice, for the accepted values for the `{{ $k }}` variable for {{ $goName }}
            const {{ $prefix }}Default {{ $prefix }} = {{ $prefix }}{{ $v.Default | ucFirst }}
        {{ else }}
@@ -44,7 +44,7 @@ func New{{ .GoName }}({{ genServerURLWithVariablesFunctionParams .GoName .OAPISc
     {{ range $k, $v := .OAPISchema.Variables }}
         {{- $placeholder := printf "{%s}" $k -}}
         {{- if gt (len $v.Enum) 0 -}}
-        {{/* TODO https://github.com/oapi-codegen/oapi-codegen/issues/2006 */}}
+        {{/* TODO https://github.com/livesession/oapi-codegen/issues/2006 */}}
         // TODO in the future, this will validate that the value is part of the {{ printf "%s%sVariable" $goName ($k | ucFirst) }} enum
         {{ end -}}
         u = strings.ReplaceAll(u, "{{ $placeholder }}", string({{ $k }}))

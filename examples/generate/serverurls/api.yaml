@@ -28,7 +28,7 @@ servers:
       default: v2
     # an example of a type that's defined, but doesn't have a default
     noDefault: {}
-    # # TODO this conflict will cause broken generated code https://github.com/oapi-codegen/oapi-codegen/issues/2003
+    # # TODO this conflict will cause broken generated code https://github.com/livesession/oapi-codegen/issues/2003
     # conflicting:
     #   enum:
     #     - 'default'
