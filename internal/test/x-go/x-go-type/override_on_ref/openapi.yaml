@@ -1,7 +1,7 @@
 openapi: "3.0.1"
 info:
   version: 1.0.0
-  title: Tests x-go-embedding AllOf composition
+  title: Tests x-go-embedding override on $ref 
 paths:
   /placeholder:
     get:
@@ -16,18 +16,12 @@ paths:
 components:
   schemas:
     response.Placeholder:
-      x-go-embedding: true
-      type: object
+      x-go-type: Placeholder
       allOf:
-        - $ref: "#/components/schemas/Response"
-        - type: object
-          properties:
-            hello:
-              type: string
+        - $ref: "#/components/schemas/response.Base"
 
-    Response:
-      x-go-name: Response
+    response.Base:
       type: object
       properties:
-        status:
-          type: integer
+        id:
+          type: string

@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=../../configuration-schema.json
+package: x_go_type_override_on_ref
+output: x_go_type_override_on_ref.gen.go
+generate:
+  models: true

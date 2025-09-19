@@ -1,0 +1,11 @@
+openapi: "3.0.1"
+
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        perPage:
+          type: integer
