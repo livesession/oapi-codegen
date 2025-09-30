@@ -1,7 +1,7 @@
 openapi: "3.0.1"
 info:
   version: 1.0.0
-  title: Tests x-go-embeding AllOf composition
+  title: Tests x-go-embedding AllOf composition
 paths:
   /placeholder:
     get:
