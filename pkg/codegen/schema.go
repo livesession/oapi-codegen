@@ -296,19 +296,6 @@ func GenerateGoSchema(sref *openapi3.SchemaRef, path []string) (Schema, error) {
 		SkipOptionalPointer: skipOptionalPointer,
 	}
 
-	// AllOf is interesting, and useful. It's the union of a number of other
-	// schemas. A common usage is to create a union of an object with an ID,
-	// so that in a RESTful paradigm, the Create operation can return
-	// (object, id), so that other operations can refer to (id)
-	if schema.AllOf != nil {
-		mergedSchema, err := MergeSchemas(schema, path)
-		if err != nil {
-			return Schema{}, fmt.Errorf("error merging schemas: %w", err)
-		}
-		mergedSchema.OAPISchema = schema
-		return mergedSchema, nil
-	}
-
 	// Check x-go-type, which will completely override the definition of this
 	// schema with the provided type.
 	if extension, ok := schema.Extensions[extPropGoType]; ok {
@@ -332,6 +319,19 @@ func GenerateGoSchema(sref *openapi3.SchemaRef, path []string) (Schema, error) {
 
 			return outSchema, nil
 		}
+	}
+
+	// AllOf is interesting, and useful. It's the union of a number of other
+	// schemas. A common usage is to create a union of an object with an ID,
+	// so that in a RESTful paradigm, the Create operation can return
+	// (object, id), so that other operations can refer to (id)
+	if schema.AllOf != nil {
+		mergedSchema, err := MergeSchemas(schema, path)
+		if err != nil {
+			return Schema{}, fmt.Errorf("error merging schemas: %w", err)
+		}
+		mergedSchema.OAPISchema = schema
+		return mergedSchema, nil
 	}
 
 	// Schema type and format, eg. string / binary

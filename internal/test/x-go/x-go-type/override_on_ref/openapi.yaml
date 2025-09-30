@@ -1,0 +1,27 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Tests x-go-embedding override on $ref 
+paths:
+  /placeholder:
+    get:
+      operationId: placeholder
+      responses:
+        default:
+          description: placeholder
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/response.Placeholder"
+components:
+  schemas:
+    response.Placeholder:
+      x-go-type: Placeholder
+      allOf:
+        - $ref: "#/components/schemas/response.Base"
+
+    response.Base:
+      type: object
+      properties:
+        id:
+          type: string
