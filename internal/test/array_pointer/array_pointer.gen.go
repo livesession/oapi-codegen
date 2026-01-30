@@ -17,7 +17,9 @@ type Response struct {
 
 // ResponsePlaceholder defines model for response.Placeholder.
 type ResponsePlaceholder struct {
+	// Embedded struct due to allOf(#/components/schemas/Response)
+	Response `yaml:",inline"`
+	// Embedded fields due to inline allOf schema
 	Hello              *string          `json:"hello,omitempty"`
 	Past7DaysHistogram []*DateHistogram `json:"past_7_days_histogram"`
-	Status             *int             `json:"status,omitempty"`
 }

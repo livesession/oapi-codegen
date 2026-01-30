@@ -4,6 +4,4 @@
 package exclude_package_go_type
 
 // ResponsePlaceholder defines model for response.Placeholder.
-type ResponsePlaceholder struct {
-	Name string `json:"name"`
-}
+type ResponsePlaceholder = Ignored
