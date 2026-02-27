@@ -13,9 +13,20 @@ import (
 func MergeSchemas(schema *openapi3.Schema, path []string) (Schema, error) {
 	allOf := schema.AllOf
 
+	// If the parent schema has its own properties alongside allOf,
+	// include them as a synthetic schema in the allOf list so they
+	// are not lost during merging.
+	if len(schema.Properties) > 0 {
+		parentOnly := *schema
+		parentOnly.AllOf = nil
+		allOf = append(allOf, openapi3.NewSchemaRef("", &parentOnly))
+	}
+
 	// If someone asked for the old way, for backward compatibility, return the
 	// old style result.
-	if globalState.options.Compatibility.OldMergeSchemas || schema.Extensions[extGoEmbedding] == true {
+	// Also use v1 merging when the parent has its own properties, because v1
+	// generates struct embedding for $ref types which preserves the type hierarchy.
+	if globalState.options.Compatibility.OldMergeSchemas || schema.Extensions[extGoEmbedding] == true || len(schema.Properties) > 0 {
 		return mergeSchemasV1(allOf, path)
 	}
 	return mergeSchemas(allOf, path)
