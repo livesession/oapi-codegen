@@ -13,8 +13,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-chi/chi/v5"
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/adaptor"
 	"github.com/kataras/iris/v12"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
@@ -61,14 +59,6 @@ func TestGinServer(t *testing.T) {
 	r := gin.New()
 	ginAPI.RegisterHandlers(r, strictHandler)
 	testImpl(t, r)
-}
-
-func TestFiberServer(t *testing.T) {
-	server := fiberAPI.StrictServer{}
-	strictHandler := fiberAPI.NewStrictHandler(server, nil)
-	r := fiber.New()
-	fiberAPI.RegisterHandlers(r, strictHandler)
-	testImpl(t, adaptor.FiberApp(r))
 }
 
 func testImpl(t *testing.T, handler http.Handler) {

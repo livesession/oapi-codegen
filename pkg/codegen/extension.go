@@ -30,7 +30,7 @@ const (
 	extOapiCodegenOnlyHonourGoName = "x-oapi-codegen-only-honour-go-name"
 )
 
-func extString(extPropValue interface{}) (string, error) {
+func extString(extPropValue any) (string, error) {
 	str, ok := extPropValue.(string)
 	if !ok {
 		return "", fmt.Errorf("failed to convert type: %T", extPropValue)
@@ -38,11 +38,11 @@ func extString(extPropValue interface{}) (string, error) {
 	return str, nil
 }
 
-func extTypeName(extPropValue interface{}) (string, error) {
+func extTypeName(extPropValue any) (string, error) {
 	return extString(extPropValue)
 }
 
-func extParsePropGoTypeSkipOptionalPointer(extPropValue interface{}) (bool, error) {
+func extParsePropGoTypeSkipOptionalPointer(extPropValue any) (bool, error) {
 	goTypeSkipOptionalPointer, ok := extPropValue.(bool)
 	if !ok {
 		return false, fmt.Errorf("failed to convert type: %T", extPropValue)
@@ -50,11 +50,11 @@ func extParsePropGoTypeSkipOptionalPointer(extPropValue interface{}) (bool, erro
 	return goTypeSkipOptionalPointer, nil
 }
 
-func extParseGoFieldName(extPropValue interface{}) (string, error) {
+func extParseGoFieldName(extPropValue any) (string, error) {
 	return extString(extPropValue)
 }
 
-func extParseOmitEmpty(extPropValue interface{}) (bool, error) {
+func extParseOmitEmpty(extPropValue any) (bool, error) {
 	omitEmpty, ok := extPropValue.(bool)
 	if !ok {
 		return false, fmt.Errorf("failed to convert type: %T", extPropValue)
@@ -62,7 +62,7 @@ func extParseOmitEmpty(extPropValue interface{}) (bool, error) {
 	return omitEmpty, nil
 }
 
-func extParseOmitZero(extPropValue interface{}) (bool, error) {
+func extParseOmitZero(extPropValue any) (bool, error) {
 	omitZero, ok := extPropValue.(bool)
 	if !ok {
 		return false, fmt.Errorf("failed to convert type: %T", extPropValue)
@@ -70,8 +70,8 @@ func extParseOmitZero(extPropValue interface{}) (bool, error) {
 	return omitZero, nil
 }
 
-func extExtraTags(extPropValue interface{}) (map[string]string, error) {
-	tagsI, ok := extPropValue.(map[string]interface{})
+func extExtraTags(extPropValue any) (map[string]string, error) {
+	tagsI, ok := extPropValue.(map[string]any)
 	if !ok {
 		return nil, fmt.Errorf("failed to convert type: %T", extPropValue)
 	}
@@ -86,7 +86,7 @@ func extExtraTags(extPropValue interface{}) (map[string]string, error) {
 	return tags, nil
 }
 
-func extParseGoJsonIgnore(extPropValue interface{}) (bool, error) {
+func extParseGoJsonIgnore(extPropValue any) (bool, error) {
 	goJsonIgnore, ok := extPropValue.(bool)
 	if !ok {
 		return false, fmt.Errorf("failed to convert type: %T", extPropValue)
@@ -94,8 +94,8 @@ func extParseGoJsonIgnore(extPropValue interface{}) (bool, error) {
 	return goJsonIgnore, nil
 }
 
-func extParseEnumVarNames(extPropValue interface{}) ([]string, error) {
-	namesI, ok := extPropValue.([]interface{})
+func extParseEnumVarNames(extPropValue any) ([]string, error) {
+	namesI, ok := extPropValue.([]any)
 	if !ok {
 		return nil, fmt.Errorf("failed to convert type: %T", extPropValue)
 	}
@@ -110,11 +110,11 @@ func extParseEnumVarNames(extPropValue interface{}) ([]string, error) {
 	return names, nil
 }
 
-func extParseDeprecationReason(extPropValue interface{}) (string, error) {
+func extParseDeprecationReason(extPropValue any) (string, error) {
 	return extString(extPropValue)
 }
 
-func extParseOapiCodegenOnlyHonourGoName(extPropValue interface{}) (bool, error) {
+func extParseOapiCodegenOnlyHonourGoName(extPropValue any) (bool, error) {
 	onlyHonourGoName, ok := extPropValue.(bool)
 	if !ok {
 		return false, fmt.Errorf("failed to convert type: %T", extPropValue)
