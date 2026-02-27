@@ -7,7 +7,7 @@ package array_pointer
 type DateHistogram struct {
 	DocCount    *int    `json:"doc_count,omitempty"`
 	Key         *string `json:"key,omitempty"`
-	KeyAsString *string `json:"key_as_string"`
+	KeyAsString *string `json:"key_as_string,omitempty"`
 }
 
 // Response defines model for Response.
@@ -20,6 +20,6 @@ type ResponsePlaceholder struct {
 	// Embedded struct due to allOf(#/components/schemas/Response)
 	Response `yaml:",inline"`
 	// Embedded fields due to inline allOf schema
-	Hello              *string          `json:"hello,omitempty"`
-	Past7DaysHistogram []*DateHistogram `json:"past_7_days_histogram"`
+	Hello              *string         `json:"hello,omitempty"`
+	Past7DaysHistogram []DateHistogram `json:"past_7_days_histogram,omitempty"`
 }

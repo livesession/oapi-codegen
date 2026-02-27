@@ -31,7 +31,13 @@ type BaseError struct {
 }
 
 // Error defines model for Error.
-type Error = BaseError
+type Error struct {
+	// Embedded struct due to allOf(#/components/schemas/BaseError)
+	BaseError `yaml:",inline"`
+	// Embedded fields due to inline allOf schema
+	// Reason A reason code specific to the service and can be used to identify the exact issue. Should be unique within a domain
+	Reason string `json:"reason"`
+}
 
 // N401 defines model for 401.
 type N401 = Error

@@ -1,10 +1,10 @@
-module github.com/oapi-codegen/oapi-codegen/v2/internal/test/issues/issue-1529/strict-fiber
+module github.com/livesession/oapi-codegen/v2/internal/test/issues/issue-1529/strict-fiber
 
 go 1.24.0
 
-replace github.com/oapi-codegen/oapi-codegen/v2 => ../../../../../
+replace github.com/livesession/oapi-codegen/v2 => ../../../../../
 
-tool github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen
+tool github.com/livesession/oapi-codegen/v2/cmd/oapi-codegen
 
 require (
 	github.com/getkin/kin-openapi v0.133.0
@@ -19,12 +19,12 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/klauspost/compress v1.17.9 // indirect
+	github.com/livesession/oapi-codegen/v2 v2.5.1 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
-	github.com/oapi-codegen/oapi-codegen/v2 v2.5.1 // indirect
 	github.com/oasdiff/yaml v0.0.0-20250309154309-f31be36b4037 // indirect
 	github.com/oasdiff/yaml3 v0.0.0-20250309153720-d2182401db90 // indirect
 	github.com/perimeterx/marshmallow v1.1.5 // indirect
