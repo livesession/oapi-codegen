@@ -15,7 +15,7 @@ import (
 	"github.com/getkin/kin-openapi/openapi3"
 	externalRef0 "github.com/livesession/oapi-codegen/v2/internal/test/externalref/packageA"
 	package_b "github.com/livesession/oapi-codegen/v2/internal/test/externalref/packageB"
-	externalRef2 "github.com/livesession/oapi-codegen/v2/internal/test/externalref/petstore"
+	externalRef1 "github.com/livesession/oapi-codegen/v2/internal/test/externalref/petstore"
 )
 
 // Container defines model for Container.

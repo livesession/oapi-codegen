@@ -20,7 +20,6 @@ import (
 	chiAPI "github.com/livesession/oapi-codegen/v2/internal/test/strict-server/chi"
 	clientAPI "github.com/livesession/oapi-codegen/v2/internal/test/strict-server/client"
 	echoAPI "github.com/livesession/oapi-codegen/v2/internal/test/strict-server/echo"
-	fiberAPI "github.com/livesession/oapi-codegen/v2/internal/test/strict-server/fiber"
 	ginAPI "github.com/livesession/oapi-codegen/v2/internal/test/strict-server/gin"
 	irisAPI "github.com/livesession/oapi-codegen/v2/internal/test/strict-server/iris"
 
