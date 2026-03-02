@@ -421,6 +421,9 @@ Server
 <code>generate</code> flag to enable code generation
 </th>
 <th>
+Required Go Version
+</th>
+<th>
 Example usage
 </th>
 </tr>
@@ -433,6 +436,9 @@ Example usage
 </td>
 <td>
 <code>chi-server</code>
+</td>
+<td>
+1.22+
 </td>
 <td>
 
@@ -463,6 +469,9 @@ To implement this, check out [the Chi docs](#impl-chi).
 <code>echo-server</code>
 </td>
 <td>
+1.22+
+</td>
+<td>
 
 For an Echo server, you will want a configuration file such as:
 
@@ -489,7 +498,9 @@ To implement this, check out [the Echo docs](#impl-echo).
 <td>
 <code>fiber-server</code>
 </td>
-
+<td>
+1.24+
+</td>
 <td>
 
 For a Fiber server, you will want a configuration file such as:
@@ -519,6 +530,9 @@ To implement this, check out [the Fiber docs](#impl-fiber).
 <code>gin-server</code>
 </td>
 <td>
+1.22+
+</td>
+<td>
 
 For a Gin server, you will want a configuration file such as:
 
@@ -546,7 +560,9 @@ To implement this, check out [the Gin docs](#impl-gin).
 <td>
 <code>gorilla-server</code>
 </td>
-
+<td>
+1.22+
+</td>
 <td>
 
 For a gorilla/mux server, you will want a configuration file such as:
@@ -574,7 +590,9 @@ To implement this, check out [the gorilla/mux docs](#impl-gorillamux).
 <td>
 <code>iris-server</code>
 </td>
-
+<td>
+1.22+
+</td>
 <td>
 
 For a Iris server, you will want a configuration file such as:
@@ -602,7 +620,9 @@ To implement this, check out [the Iris docs](#impl-iris).
 <td>
 <code>std-http-server</code>
 </td>
-
+<td>
+1.22+
+</td>
 <td>
 
 To use purely `net/http` (for Go 1.22+), you will want a configuration file such as:
@@ -2487,17 +2507,6 @@ Explicitly order struct fields
 <tr>
 <td>
 
-`x-go-embedding`
-
-</td>
-<td>
-Embed referenced schema(s) into the generated struct when using `allOf`
-</td>
-</tr>
-
-<tr>
-<td>
-
 `x-oapi-codegen-only-honour-go-name`
 
 </td>
@@ -3164,53 +3173,6 @@ type ClientWithExtension struct {
 ```
 
 You can see this in more detail in [the example code](examples/extensions/xorder/).
-
-### `x-go-embedding` - embed referenced schema(s) into the generated struct when using `allOf`
-
-When composing schemas with `allOf`, setting `x-go-embedding: true` on the composed type causes referenced schema(s) to be embedded in the generated Go struct. This results in Go field promotion for the embedded type(s).
-
-We can see this at play with the following schemas:
-
-```yaml
-openapi: "3.0.1"
-info:
-  version: 1.0.0
-  title: x-go-embedding
-components:
-  schemas:
-    response.Placeholder:
-      x-go-embedding: true
-      type: object
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - type: object
-          properties:
-            hello:
-              type: string
-
-    Response:
-      x-go-name: Response
-      type: object
-      properties:
-        status:
-          type: integer
-```
-
-This will produce models similar to:
-
-```go
-// Response defines model for Response.
-type Response struct {
-    Status *int `json:"status,omitempty"`
-}
-
-// ResponsePlaceholder defines model for response.Placeholder.
-// Note the embedded Response, due to x-go-embedding: true
-type ResponsePlaceholder struct {
-    Response
-    Hello *string `json:"hello,omitempty"`
-}
-```
 
 ### `x-oapi-codegen-only-honour-go-name` - only honour the `x-go-name` when generating field names
 
@@ -4534,7 +4496,7 @@ Please consider sponsoring us through GitHub Sponsors either [on the organisatio
 
 See [this blog post from Tidelift](https://blog.tidelift.com/paying-maintainers-the-howto) for more details on how to talk to your company about sponsoring maintainers of (Open Source) projects you depend on.
 
-In addition, we are also generously sponsored by the following folks, each of whom provide sponsorship for 1 hour of work a month:
+We are also generously sponsored by the following folks, each of whom provide sponsorship for 1 hour of work a month:
 
 <p align="center">
 	<a href="https://www.devzero.io/lp/dev-environment?utm_campaign=github&utm_source=oapi-codegen%20repo&utm_medium=github%20sponsorship">
@@ -4547,28 +4509,8 @@ In addition, we are also generously sponsored by the following folks, each of wh
 </p>
 
 <p align="center">
-	<a href="https://sandbox.speakeasy.com/?s=iQ5hEdrjLCii&utm_source=oapi-codegen+repo&utm_medium=github+sponsorship">
-		<picture>
-		  <source media="(prefers-color-scheme: light)" srcset=".github/sponsors/speakeasy-light.svg">
-		  <source media="(prefers-color-scheme: dark)" srcset=".github/sponsors/speakeasy-dark.svg">
-		  <img alt="Speakeasy logo" src=".github/sponsors/speakeasy-dark.svg" height="60px">
-		</picture>
-	</a>
-</p>
-
-<p align="center">
 	<a href="https://cybozu.co.jp/?utm_source=oapi-codegen+repo&utm_medium=github+sponsorship">
 		<img alt="Cybozu logo" src=".github/sponsors/cybozu.svg" height="100px">
-	</a>
-</p>
-
-<p align="center">
-	<a href="https://livepeer.org/?utm_source=oapi-codegen+repo&utm_medium=github+sponsorship">
-		<picture>
-		  <source media="(prefers-color-scheme: light)" srcset=".github/sponsors/livepeer-light.svg">
-		  <source media="(prefers-color-scheme: dark)" srcset=".github/sponsors/livepeer-dark.svg">
-		  <img alt="Livepeer logo" src=".github/sponsors/livepeer-dark.svg" height="50px">
-		</picture>
 	</a>
 </p>
 

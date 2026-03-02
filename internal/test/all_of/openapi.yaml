@@ -51,3 +51,15 @@ components:
               type: integer
               format: int64
           required: [ ID ]
+    PersonWithRole:
+      type: object
+      description: |
+        This tests a schema that has both its own properties and an allOf reference.
+        The generated code should embed the allOf ref and inline the own properties.
+      properties:
+        Role:
+          type: string
+      allOf:
+        - $ref: "#/components/schemas/Person"
+      required:
+        - Role
